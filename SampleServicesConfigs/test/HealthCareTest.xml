@@ -1,0 +1,58 @@
+<unit-test>
+    <artifacts>
+        <test-artifact>
+            <artifact>/SampleServicesConfigs/src/main/synapse-config/api/HealthcareAPI.xml</artifact>
+        </test-artifact>
+        <supportive-artifacts>
+            <artifact>/SampleServicesConfigs/src/main/synapse-config/endpoints/GrandOakEP.xml</artifact>
+            <artifact>/SampleServicesConfigs/src/main/synapse-config/endpoints/ClemencyEP.xml</artifact>
+            <artifact>/SampleServicesConfigs/src/main/synapse-config/endpoints/QueryDoctorEP.xml</artifact>
+            <artifact>/SampleServicesConfigs/src/main/synapse-config/endpoints/PineValleyEP.xml</artifact>
+            <artifact>/SampleServicesConfigs/src/main/synapse-config/endpoints/SettlePaymentEP.xml</artifact>
+            <artifact>/SampleServicesConfigs/src/main/synapse-config/endpoints/ChannelingFeeEP.xml</artifact>
+        </supportive-artifacts>
+        <registry-resources/>
+        <connector-resources/>
+    </artifacts>
+    <test-cases>
+        <test-case name="queryDoctortest">
+            <input>
+                <request-path>/querydoctor/surgery</request-path>
+                <request-method>GET</request-method>
+            </input>
+            <assertions>
+                <assertEquals>
+                    <actual>$body</actual>
+                    <expected><![CDATA[[
+    {
+        "name": "thomas collins",
+        "hospital": "grand oak community hospital",
+        "category": "surgery",
+        "availability": "9.00 a.m - 11.00 a.m",
+        "fee": 7000
+    },
+    {
+        "name": "anne clement",
+        "hospital": "clemency medical center",
+        "category": "surgery",
+        "availability": "8.00 a.m - 10.00 a.m",
+        "fee": 12000
+    },
+    {
+        "name": "seth mears",
+        "hospital": "pine valley community hospital",
+        "category": "surgery",
+        "availability": "3.00 p.m - 5.00 p.m",
+        "fee": 8000
+    }
+]]]></expected>
+                    <message>Assertion failed</message>
+                </assertEquals>
+            </assertions>
+        </test-case>
+    </test-cases>
+    <mock-services>
+        <mock-service>/SampleServicesConfigs/test/resources/mock-services/QueryDoctorMock.xml</mock-service>
+        <mock-service>/SampleServicesConfigs/test/resources/mock-services/QueryDoctorMock.xml</mock-service>
+    </mock-services>
+</unit-test>
